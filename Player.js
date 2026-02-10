@@ -40,6 +40,28 @@ class Player {
     AddHabbit(value){
         this.habbit.push(value);
     }
+
+    analysisTheHabits(value){
+        for (const ele of this.habbit) {
+            let countOfWellManage = 0, countOfspending = 0, countOfSaving = 0, countOfCredit = 0, countOfNotUse = 0;
+            if(ele == "理財"){
+                countOfWellManage++;
+            }if (ele == "享受當下"){
+                countOfspending++;
+            }if (ele == "儲蓄"){
+                countOfSaving++;
+            }if (ele == "先洗未來錢"){
+                countOfCredit++
+            }if (ele == "節慳"){
+                countOfNotUse++;
+            }
+        }
+        const countArr = [countOfWellManage, countOfspending, countOfSaving, countOfCredit, countOfNotUse];
+        countArr.sort(function(a, b){
+            return a - b;
+            });
+    }
+    
 }
 
 export { Player };

@@ -54,8 +54,7 @@ class MoneyGame {
             </div>
         `;
 
-        this.displayChoice(); 
-        this.player.interestAdding(); //Every Event,the interest rate cal 
+        this.displayChoice();
     }
 
     // Display choice buttons for the current question
@@ -81,7 +80,8 @@ class MoneyGame {
         buttons.forEach(button => {
             button.addEventListener('click', (e) => {
                 const attributes = JSON.parse(e.target.getAttribute('data-attributes'));
-                if ((attributes.moneydecreaseInBank > this.player.getMoneyInBankAccount) || (attributes.moneydecreaseInHand > this.player.getMoneyInHand)){
+                if (attributes.moneydecreaseInHand > this.player.getMoneyInHand()){
+                    alert("You dont have enought money, select again !")
                     return;
                 }
                 this.handleChoice(attributes);
@@ -109,6 +109,8 @@ class MoneyGame {
             this.player.AddHabbit(attributes.habbits)
         }
 
+        //Every Event,the interest rate cal 
+        this.player.interestAdding(); //Every Event,the interest rate cal 
 
         // Update display
         this.updateStatusBox();
@@ -127,7 +129,7 @@ class MoneyGame {
             <div class="summary-content">
                 <p>最終銀行餘額: $${this.player.getMoneyInBankAccount()}</p>
                 <p>最終銀包金額: $${this.player.getMoneyInHand()}</p>
-                <p> $${this.player.getHabbit()}</p>
+                <p> ${this.player.getHabbit()}</p>
             </div>
             <div id="control-buttons">
                 <button class="restart-button" onclick="location.reload()">重新開始</button>

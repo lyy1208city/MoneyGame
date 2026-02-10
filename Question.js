@@ -1,3 +1,4 @@
+//Habit list: 理財, 享受當下, 儲蓄, 先洗未來錢, 節慳
 export const questions = [
     {   
         "questionID":0,
@@ -10,7 +11,7 @@ export const questions = [
                     "moneydecreaseInBank": 0,
                     "moneyincreaseInHand": 0,
                     "moneydecreaseInHand": 0,
-                    "habbits": "Saver"
+                    "habbits": "理財"
                 }
             },
             "choice2": {
@@ -20,49 +21,49 @@ export const questions = [
                     "moneydecreaseInBank": 0,
                     "moneyincreaseInHand": 0,
                     "moneydecreaseInHand": 0,
-                    "habbits": ""
+                    "habbits": "享受當下"
                 }
             },
             "choice3": {
-                "text":"Donate it",
+                "text":"put it in the wallet",
                 "Attributes": {
                     "moneyincreaseInBank": 0,
                     "moneydecreaseInBank": 0,
-                    "moneyincreaseInHand": 0,
+                    "moneyincreaseInHand": 200,
                     "moneydecreaseInHand": 0,
-                    "habbits": ""
+                    "habbits": "儲蓄"
                 }
             }
         }
     }, 
     {
         "questionID":1,
-        "question":"Find 20 on floor",
+        "question":"Find $50 on floor",
         "choices":{
             "choice1": {
-                "text":"Give it to police",
+                "text":"put it in the wallet",
                 "Attributes": {
                     "moneyincreaseInBank": 0,
                     "moneydecreaseInBank": 0,
-                    "moneyincreaseInHand": 0,
+                    "moneyincreaseInHand": 50,
                     "moneydecreaseInHand": 0,
                     "habbits": ""
                 }
             },
             "choice2": {
-                "text":"Use it",
+                "text":"Go and buy food",
                 "Attributes": {
                     "moneyincreaseInBank": 0,
                     "moneydecreaseInBank": 0,
                     "moneyincreaseInHand": 0,
                     "moneydecreaseInHand": 0,
-                    "habbits": ""
+                    "habbits": "享受當下"
                 }
             },
             "choice3": {
-                "text":"Save in bank",
+                "text":"Give to police",
                 "Attributes": {
-                    "moneyincreaseInBank": 20,
+                    "moneyincreaseInBank": 0,
                     "moneydecreaseInBank": 0,
                     "moneyincreaseInHand": 0,
                     "moneydecreaseInHand": 0,
@@ -75,13 +76,13 @@ export const questions = [
         "question":"My phone is broken",
         "choices":{
             "choice1": {
-                "text":"Buy Lastest iPhone from money in bank account",
+                "text":"Buy Lastest iPhone from money on credit",
                 "Attributes": {
                     "moneyincreaseInBank": 0,
-                    "moneydecreaseInBank": 2000,
+                    "moneydecreaseInBank": 5000,
                     "moneyincreaseInHand": 0,
                     "moneydecreaseInHand": 0,
-                    "habbits": ""
+                    "habbits": "先洗未來錢"
                 }
             },
             "choice2": {
@@ -91,17 +92,17 @@ export const questions = [
                     "moneydecreaseInBank": 0,
                     "moneyincreaseInHand": 0,
                     "moneydecreaseInHand": 0,
-                    "habbits": ""
+                    "habbits": "節慳"
                 }
             },
             "choice3": {
-                "text":"Buy a middle one",
+                "text":"Fix it",
                 "Attributes": {
                     "moneyincreaseInBank": 0,
-                    "moneydecreaseInBank": 100,
+                    "moneydecreaseInBank": 0,
                     "moneyincreaseInHand": 0,
-                    "moneydecreaseInHand": 0,
-                    "habbits": ""
+                    "moneydecreaseInHand": 50,
+                    "habbits": "理財"
                 }
             }
         }
