@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-hk">
+<head>
+    <meta charset="UTF-8">
+    <title>理財遊戲</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="status-box">
+        <div class="status-item">
+            <span class="status-label">銀行餘額： $</span>
+            <span class="status-value" id="status-bank">0</span>
+        </div>
+        <div class="status-item">
+            <span class="status-label">銀包： $</span>
+            <span class="status-value" id="status-wallet">0</span>
+        </div>
+    </div>
+
+    <h1>理財遊戲</h1>
+
+    <!-- 主體 -->
+    <div id="game-container">
+        <div id="event-container"></div>
+        <div id="buttons"></div>
+        <div id="summary-container">
+            <div class="summary-title" id="summary-title"></div>
+            <div class="summary-content" id="summary-content"></div>
+            <div id="control-buttons"></div>
+        </div>
+    </div>
+    
+
+    <!-- 過場 -->
+    <div id="transition-display">
+        <div class="transition-gif">
+            <img src="" alt="transition">
+        </div>
+        <div class="transition-message" id="transition-message"></div>
+    </div>
+    
+    <div id="output" style="display: none;"></div>
+    <script type="module">
+        import { Player } from './Player.js';
+        import { MoneyGame } from './MoneyGame.js';
+
+        // Initialize game when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const player = new Player();
+            const game = new MoneyGame(player);
+            game.init();
+        });
+    </script>
+</body>
+</html>
