@@ -42,26 +42,32 @@ class Player {
     }
 
     analysisTheHabits(value){
-        for (const ele of this.habbit) {
-            let countOfWellManage = 0, countOfspending = 0, countOfSaving = 0, countOfCredit = 0, countOfNotUse = 0;
-            if(ele == "理財"){
-                countOfWellManage++;
-            }if (ele == "享受當下"){
-                countOfspending++;
-            }if (ele == "儲蓄"){
-                countOfSaving++;
-            }if (ele == "先洗未來錢"){
-                countOfCredit++
-            }if (ele == "節慳"){
-                countOfNotUse++;
+        const MostHabbit = this.findMostFrequent(this.habbit);
+        let count = 0;
+        for (const element of this.habbit){
+            if(element === MostHabbit){
+                count++;
             }
         }
-        const countArr = [countOfWellManage, countOfspending, countOfSaving, countOfCredit, countOfNotUse];
-        countArr.sort(function(a, b){
-            return a - b;
-            });
+        return `For your Spending habbit, You can be most describe as ${MostHabbit} , which is ${(count/value*100).toFixed(2)}% amought your choice`;   
+    }
+
+
+    findMostFrequent(arr) {
+    const frequencyMap = {};
+    let maxCount = 0;
+    let mostFrequentElement;
+    for (const element of arr) {
+        frequencyMap[element] = (frequencyMap[element] || 0) + 1;
+        if (frequencyMap[element] > maxCount) {
+        maxCount = frequencyMap[element];
+        mostFrequentElement = element;
+        }
+    }
+    return mostFrequentElement;
     }
     
+
 }
 
 export { Player };

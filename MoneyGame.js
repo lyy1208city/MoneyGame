@@ -9,6 +9,14 @@ class MoneyGame {
         this.eventContainer = document.getElementById('event-container');
         this.buttonsContainer = document.getElementById('buttons'); 
         this.summaryContainer = document.getElementById('summary-container');
+        this.errorBox = document.getElementById('error-box');
+        this.errorMessage = document.getElementById('error-message');
+        this.errorCloseBtn = document.querySelector('.error-close-btn');
+
+        // Setup error box close button
+        if (this.errorCloseBtn) {
+            this.errorCloseBtn.addEventListener('click', () => this.hideErrorBox());
+        }
 
         this.updateStatusBox();
     }
@@ -81,7 +89,7 @@ class MoneyGame {
             button.addEventListener('click', (e) => {
                 const attributes = JSON.parse(e.target.getAttribute('data-attributes'));
                 if (attributes.moneydecreaseInHand > this.player.getMoneyInHand()){
-                    alert("You dont have enought money, select again !")
+                    this.showErrorBox();
                     return;
                 }
                 this.handleChoice(attributes);
@@ -110,7 +118,7 @@ class MoneyGame {
         }
 
         //Every Event,the interest rate cal 
-        this.player.interestAdding(); //Every Event,the interest rate cal 
+        this.player.interestAdding();
 
         // Update display
         this.updateStatusBox();
@@ -128,13 +136,36 @@ class MoneyGame {
             <div class="summary-title">遊戲結束</div>
             <div class="summary-content">
                 <p>最終銀行餘額: $${this.player.getMoneyInBankAccount()}</p>
-                <p>最終銀包金額: $${this.player.getMoneyInHand()}</p>
-                <p> ${this.player.getHabbit()}</p>
+                <p>最終現金餘額: $${this.player.getMoneyInHand()}</p>
+                <p> ${this.player.analysisTheHabits(this.currentEventIndex)}</p>
             </div>
             <div id="control-buttons">
                 <button class="restart-button" onclick="location.reload()">重新開始</button>
             </div>
         `;
+        // Show the summary container
+        this.summaryContainer.classList.add('show');
+    }
+
+    // Show error box with message
+    showErrorBox(message = '') {
+        this.errorMessage.textContent = message;
+        this.errorBox.classList.add('show');
+    }
+
+    // Hide error box
+    hideErrorBox() {
+        this.errorBox.classList.remove('show');
+    }
+
+    // Show transition between events
+    showTransition(message = 'Next Event') {
+        this.transitionMessage.textContent = message;
+        this.transitionDisplay.classList.add('show');
+        // Hide transition after 2 seconds
+        setTimeout(() => {
+            this.transitionDisplay.classList.remove('show');
+        }, 2000);
     }
 }
 
