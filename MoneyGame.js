@@ -27,7 +27,7 @@ class MoneyGame {
         const moneyInHandElement = document.getElementById('status-wallet');
         
         if (moneyInBankElement) {
-            moneyInBankElement.textContent = this.player.getMoneyInBankAccount();
+            moneyInBankElement.textContent = (this.player.getMoneyInBankAccount().toFixed(2));
         }
 
         if (moneyInHandElement) {
@@ -89,7 +89,7 @@ class MoneyGame {
             button.addEventListener('click', (e) => {
                 const attributes = JSON.parse(e.target.getAttribute('data-attributes'));
                 if (attributes.moneydecreaseInHand > this.player.getMoneyInHand()){
-                    this.showErrorBox();
+                    this.showErrorBox(attributes);
                     return;
                 }
                 this.handleChoice(attributes);
@@ -98,7 +98,7 @@ class MoneyGame {
     }
 
     // Handle choice selection and apply attributes
-    handleChoice(attributes) {
+    async handleChoice(attributes) {
         // Apply money changes to player
         if (attributes.moneyincreaseInBank > 0) {
             this.player.addMoneyToBankAccount(attributes.moneyincreaseInBank);
@@ -123,6 +123,9 @@ class MoneyGame {
         // Update display
         this.updateStatusBox();
 
+        await this.showTransition(attributes.transition)
+        delay(2000)
+
         // Move to next question
         this.currentEventIndex++;
         this.displayEvent();
@@ -135,7 +138,7 @@ class MoneyGame {
         this.summaryContainer.innerHTML = `
             <div class="summary-title">遊戲結束</div>
             <div class="summary-content">
-                <p>最終銀行餘額: $${this.player.getMoneyInBankAccount()}</p>
+                <p>最終銀行餘額: $${this.player.getMoneyInBankAccount().toFixed(2)}</p>
                 <p>最終現金餘額: $${this.player.getMoneyInHand()}</p>
                 <p> ${this.player.analysisTheHabits(this.currentEventIndex)}</p>
             </div>
@@ -148,7 +151,13 @@ class MoneyGame {
     }
 
     // Show error box with message
-    showErrorBox(message = '') {
+    showErrorBox(attributes) {
+        let message = "";
+        if (attributes.moneydecreaseInHand > this.player.getMoneyInHand()){
+            message = "現金不足, 請重試";
+        }else {
+            message = "發生錯誤請重試";
+        }
         this.errorMessage.textContent = message;
         this.errorBox.classList.add('show');
     }
@@ -159,14 +168,26 @@ class MoneyGame {
     }
 
     // Show transition between events
-    showTransition(message = 'Next Event') {
-        this.transitionMessage.textContent = message;
-        this.transitionDisplay.classList.add('show');
-        // Hide transition after 2 seconds
-        setTimeout(() => {
-            this.transitionDisplay.classList.remove('show');
-        }, 2000);
-    }
+    async showTransition(message, gifPath = 'player_walk.gif') {
+            this.hideErrorBox();
+            //this.buttonsContainer.innerHTML = '';
+            this.transitionMessage.textContent = message;
+            
+            const img = this.transitionDisplay.querySelector('img');
+            img.src = gifPath;
+            img.style.display = gifPath === '//TBC' ? 'none' : 'block';
+            
+            this.transitionDisplay.classList.add('show');
+            
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    this.transitionDisplay.classList.remove('show');
+                    this.updateStatusBox();
+                    resolve();
+                }, 2000);
+            });
+        }
 }
+
 
 export { MoneyGame };

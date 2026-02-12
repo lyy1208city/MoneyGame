@@ -49,7 +49,7 @@ class Player {
                 count++;
             }
         }
-        return `For your Spending habbit, You can be most describe as ${MostHabbit} , which is ${(count/value*100).toFixed(2)}% amought your choice`;   
+        return `就你的消費習慣而言，您最能被描述為 ${MostHabbit} , 它佔了 ${(count/value*100).toFixed(2)}% 的選擇`;   
     }
 
 

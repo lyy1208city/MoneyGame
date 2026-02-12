@@ -125,6 +125,7 @@ h1 {
     flex-direction: column;
     gap: 15px;
     margin-bottom: 30px;
+    width: 100%;
 }
 
 button {
@@ -140,6 +141,7 @@ button {
     letter-spacing: 1px;
     transition: all 0.1s;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+    width: 100%;
 }
 
 button:hover {
@@ -407,6 +409,26 @@ button:disabled {
     color: var(--text-color);
     text-align: right;
     min-width: 100px;
+}
+
+#displayinterest-box{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: var(--primary-color);
+    border: 4px solid var(--accent-color);
+    padding: 20px;
+    min-width: 200px;
+    z-index: 100;
+    font-size: 1.1em;
+    line-height: 1.8;
+    box-shadow: 0 0 0 2px var(--secondary-color);
+}
+
+#displayinterest-label{
+    font-weight: bold;
+    color: var(--accent-color);
+    min-width: 80px;
 }
 
 @media (max-width: 768px) {
