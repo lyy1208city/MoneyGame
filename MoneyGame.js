@@ -169,7 +169,7 @@ class MoneyGame {
     // Show transition between events
     async showTransition(message, gifPath = 'player_walk.gif') {
             this.hideErrorBox();
-            //this.buttonsContainer.innerHTML = '';
+            this.buttonsContainer.innerHTML = '';
             this.transitionMessage.textContent = message;
             
             const img = this.transitionDisplay.querySelector('img');
@@ -181,6 +181,7 @@ class MoneyGame {
             return new Promise(resolve => {
                 setTimeout(() => {
                     this.transitionDisplay.classList.remove('show');
+                    resolve();
                 }, 2000);
             });
         }
