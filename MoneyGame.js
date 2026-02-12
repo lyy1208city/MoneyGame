@@ -124,7 +124,6 @@ class MoneyGame {
         this.updateStatusBox();
 
         await this.showTransition(attributes.transition)
-        delay(2000)
 
         // Move to next question
         this.currentEventIndex++;
@@ -182,8 +181,6 @@ class MoneyGame {
             return new Promise(resolve => {
                 setTimeout(() => {
                     this.transitionDisplay.classList.remove('show');
-                    this.updateStatusBox();
-                    resolve();
                 }, 2000);
             });
         }
